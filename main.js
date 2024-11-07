@@ -1,5 +1,5 @@
 const POPULATION = 1000;
-const GENERATION_LENGTH = 400;
+const GENERATION_LENGTH = 600;
 
 let jets = [];
 
@@ -38,7 +38,7 @@ function draw() {
     rect(-30, 40, 60, 40);
     pop();
 
-    if (currentStep >= 400 || jets.every(x => x.done)) {
+    if (currentStep >= GENERATION_LENGTH || jets.every(x => x.done)) {
         generation = 0;
         currentStep = 0;
         jets.sort((a, b) => b.fitness() - a.fitness());
@@ -65,7 +65,7 @@ class Jet {
         if (genes !== null) this.genes = genes;
         else {
             // initialize the genes with random numbers from 0 to 3 inclusive
-            this.genes = Array.from({length: 400}, () => Math.floor(Math.random() * 4));
+            this.genes = Array.from({length: GENERATION_LENGTH}, () => Math.floor(Math.random() * 4));
         }
 
         this.reset();
